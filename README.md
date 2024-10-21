@@ -1,4 +1,8 @@
-# README
+# link-shortener
+
+A website similar to tinyurl, where you can create a custom short url that redirects to another URL
+
+---
 
 This README would normally document whatever steps are necessary to get the
 application up and running.

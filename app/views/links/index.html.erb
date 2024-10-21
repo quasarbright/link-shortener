@@ -1,0 +1,12 @@
+<h1>Link Shortener</h1>
+
+<p>links:</p>
+<ul>
+  <% @links.each do |link| %>
+    <li>
+      <%= link_to link.slug, link %>
+    </li>
+  <% end %>
+</ul>
+
+<%= link_to "New Link", new_link_path %>
