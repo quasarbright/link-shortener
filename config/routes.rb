@@ -3,6 +3,12 @@ Rails.application.routes.draw do
   root "links#index"
 
   resources :links, only: %w[show new create]
+  resources :users
+  resources :sessions
+
+  get 'signup' => 'users#new', as: 'signup'
+  get 'login' => 'sessions#new', as: 'login'
+  get 'logout' => 'sessions#destroy', as: 'logout'
 
   # Reveal health status on /up that returns 200 if the app boots with no exceptions, otherwise 500.
   # Can be used by load balancers and uptime monitors to verify that the app is live.

@@ -1,4 +1,5 @@
 class LinksController < ApplicationController
+  before_action :authorize, only: [:new, :create]
   def index
     @links = Link.all
   end
@@ -22,7 +23,7 @@ class LinksController < ApplicationController
     if @link.save
       redirect_to action: "index"
     else
-      render :new, status: :unprocessable_entity
+      render new
     end
   end
 
