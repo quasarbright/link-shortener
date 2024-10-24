@@ -1,38 +1,29 @@
 # link-shortener
 
-A website similar to tinyurl, where you can create a custom short url that redirects to another URL
+A website similar to tinyurl, where you can create a custom short url that redirects to another URL.
+
+Made with Ruby on Rails.
 
 Users can create, view, edit, and delete shortened links. 
 Only a link's creator can edit or delete it.
 
----
+Auth is implemented with just `bcrypt` (no auth framework)
 
-* Ruby version
+## Dependencies
 
-ruby 3.3.5 (2024-09-03 revision ef084cc8f4) [arm64-darwin23]
+* ruby 3.3.5
+* sqlite3 3.43.2
+* rails 7.2.1.1
 
-* System dependencies
-
-none
-
-* Configuration
-
-* Database creation
+## Setup
 
 ```shell
-rake db:create
+bundle install
+bin/rails db:migrate
 ```
 
-* Database initialization
+## Run Locally
 
 ```shell
-rake db:migrate
+bin/rails server
 ```
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
