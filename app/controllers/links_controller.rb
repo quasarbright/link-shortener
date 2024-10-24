@@ -1,5 +1,13 @@
 class LinksController < ApplicationController
   before_action :authorize, except: [:goto]
+  before_action :authorize_ownership, only: [
+    :show,
+    :new,
+    :create,
+    :edit,
+    :update,
+    :destroy,
+  ]
   def index
     @links = current_user.links
   end
@@ -50,10 +58,24 @@ class LinksController < ApplicationController
   # only use when there is already a link,
   # like for show, but not new
   private def update_current_link
-    @link = Link.find_by_slug(params[:slug] || params[:id])
+    @link = Link.find_by_slug!(params[:slug] || params[:id])
   end
 
   private def link_params
     params.require(:link).permit(:slug, :destination).merge(creator_id: current_user.id)
+  end
+
+  private def authorize_ownership
+    update_current_link
+    if @link.creator_id != current_user.id
+      raise ForbiddenAccessError
+    end
+  end
+
+  class ForbiddenAccessError < StandardError
+  end
+
+  rescue_from ForbiddenAccessError do
+    render inline: "Forbidden", status: :forbidden
   end
 end
