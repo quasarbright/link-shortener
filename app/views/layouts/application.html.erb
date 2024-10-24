@@ -18,6 +18,11 @@
   </head>
 
   <body>
+    <% flash.each do |key, value| %>
+      <div class="flash <%= key %>">
+        <%= value %>
+      </div>
+    <% end %>
     <% if current_user %>
       Logged in as <%= current_user.email %>.
       <%= link_to "Log Out", logout_path %>
