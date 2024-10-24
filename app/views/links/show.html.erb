@@ -1,2 +1,10 @@
 <h1>Your link</h1>
 <a href=<%= "/#{@link.slug}" %>><%= @link.slug %></a>
+
+<ul>
+  <li><%= link_to "Edit", edit_link_path(@link) %></li>
+  <li><%= link_to "Destroy", link_path(@link), data: {
+    turbo_method: :delete,
+    turbo_confirm: "Are you sure?",
+  } %></li>
+</ul>

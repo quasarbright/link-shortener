@@ -1,0 +1,21 @@
+<%= form_with model: link do |form| %>
+  <div>
+    <%= form.label :slug %>
+    <%= form.text_field :slug %>
+    <% link.errors.full_messages_for(:slug).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.label :destination %>
+    <%= form.text_field :destination %>
+    <% link.errors.full_messages_for(:destination).each do |message| %>
+      <div><%= message %></div>
+    <% end %>
+  </div>
+
+  <div>
+    <%= form.submit %>
+  </div>
+<% end %>
