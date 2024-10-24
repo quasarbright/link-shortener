@@ -10,12 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2024_10_24_135323) do
+ActiveRecord::Schema[7.2].define(version: 2024_10_24_153052) do
   create_table "links", force: :cascade do |t|
     t.string "slug"
     t.string "destination"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "creator_id", null: false
+    t.index ["creator_id"], name: "index_links_on_creator_id"
     t.index ["slug"], name: "index_links_on_slug", unique: true
   end
 
@@ -25,4 +27,6 @@ ActiveRecord::Schema[7.2].define(version: 2024_10_24_135323) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
+
+  add_foreign_key "links", "users", column: "creator_id"
 end

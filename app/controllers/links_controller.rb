@@ -1,7 +1,7 @@
 class LinksController < ApplicationController
-  before_action :authorize, only: [:new, :create]
+  before_action :authorize, only: [:index, :new, :create]
   def index
-    @links = Link.all
+    @links = current_user.links
   end
 
   def show
@@ -18,12 +18,12 @@ class LinksController < ApplicationController
   end
 
   def create
-    @link = Link.new(link_params)
+    @link = Link.new(link_params.merge(creator_id: current_user.id))
 
     if @link.save
       redirect_to action: "index"
     else
-      render new
+      render "new"
     end
   end
 
